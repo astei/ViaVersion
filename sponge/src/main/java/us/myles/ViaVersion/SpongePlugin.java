@@ -3,8 +3,6 @@ package us.myles.ViaVersion;
 import com.google.gson.JsonObject;
 import com.google.inject.Inject;
 import lombok.Getter;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.chat.ComponentSerializer;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.config.DefaultConfig;
 import org.spongepowered.api.entity.living.player.Player;
@@ -168,11 +166,7 @@ public class SpongePlugin implements ViaPlatform {
         game.getServer().getPlayer(uuid)
                 .ifPresent(player ->
                         player.sendMessage(
-                                TextSerializers.JSON.deserialize(
-                                        ComponentSerializer.toString(
-                                                TextComponent.fromLegacyText(message) // Hacky way to fix links
-                                        )
-                                )
+                                TextSerializers.LEGACY_FORMATTING_CODE.deserialize(message)
                         )
                 );
     }
